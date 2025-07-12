@@ -1,17 +1,12 @@
 import { z } from "zod";
 
 export const createProductDTO = z.object({
-  productId: z.string().optional(), // Auto-generated, so optional in creation
+  productId: z.string(), // Auto-generated, so optional in creation
   name: z.string().min(1),
   price: z.number().positive(),
   discount: z.number().min(0).optional(),
-  category: z.enum([
-    "Computers",
-    "Printers",
-    "Networking",
-    "Software",
-    "Accessories",
-  ]),
+  // Changed from enum to string - will validate against database categories
+  category: z.string().min(1, "Category is required"),
   image: z.string().min(1),
   description: z.string().min(1),
   availability: z.enum(["In Stock", "Out of Stock"]),
@@ -20,4 +15,22 @@ export const createProductDTO = z.object({
     .refine((specs) => Object.keys(specs).length > 0),
 });
 
+// Export CreateProductDTO TypeScript type inferred from the Zod schemas
 export type CreateProductDTO = z.infer<typeof createProductDTO>;
+
+export const updateProductDTO = z.object({
+  name: z.string().min(1),
+  price: z.number().positive(),
+  discount: z.number().min(0),
+  // Changed from enum to string - will validate against database categories
+  category: z.string().min(1, "Category is required"),
+  image: z.string().min(1),
+  description: z.string().min(1),
+  availability: z.enum(["In Stock", "Out of Stock"]),
+  specs: z
+    .record(z.string().min(1), z.string().min(1))
+    .refine((specs) => Object.keys(specs).length > 0),
+});
+
+// Export UpdateProductDTO TypeScript type inferred from the Zod schemas
+export type UpdateProductDTO = z.infer<typeof updateProductDTO>;
