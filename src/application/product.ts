@@ -53,9 +53,16 @@ export const getProductById = async (
 ) => {
   try {
     const productId = req.params.id;
+
+    // Find the product by id
     const product = await Product.findById(productId);
     if (!product) {
       throw new NotFoundError("Product not found");
+    }
+
+    // Check if the product has a category
+    if (!product.category) {
+      throw new NotFoundError("Product has no category");
     }
 
     // Return the response
