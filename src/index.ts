@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import connectDB from "./infrastructure/db";
-import cors from "cors";
+import corsMiddleware from "./api/middleware/cors";
 
 import productsRouter from "./api/product";
 
@@ -10,17 +10,8 @@ const app = express();
 // Middleware to parse JSON data in the request body
 app.use(express.json());
 
-// Middleware to handle CORS
-// const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
-// app.use(
-//   cors({
-//     origin: [FRONTEND_URL],
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
-
-app.use(cors());
+// Setup CORS logic
+app.use(corsMiddleware);
 
 // Connect to MongoDB database
 connectDB();
