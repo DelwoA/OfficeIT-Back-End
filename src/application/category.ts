@@ -62,7 +62,8 @@ export const updateCategory = async (
     // Update the category
     const category = await Category.findByIdAndUpdate(
       categoryId,
-      updatedCategory.data
+      updatedCategory.data,
+      { new: true }
     );
 
     // Return the response

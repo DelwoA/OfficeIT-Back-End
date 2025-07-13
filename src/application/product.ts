@@ -92,7 +92,8 @@ export const updateProduct = async (
     // Update the product
     const product = await Product.findByIdAndUpdate(
       productId,
-      updatedProduct.data
+      updatedProduct.data,
+      { new: true }
     );
 
     // Return the response

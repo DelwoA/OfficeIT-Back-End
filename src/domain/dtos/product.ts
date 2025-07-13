@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 export const createProductDTO = z.object({
-  productId: z.string(), // Auto-generated, so optional in creation
   name: z.string().min(1),
   price: z.number().positive(),
   discount: z.number().min(0).optional(),
