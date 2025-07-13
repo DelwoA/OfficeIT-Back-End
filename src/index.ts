@@ -30,5 +30,5 @@ app.use("/api/categories", categoriesRouter);
 app.use(globalErrorHandlingMiddleware);
 
 // Define the port to run the server
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}...`));
