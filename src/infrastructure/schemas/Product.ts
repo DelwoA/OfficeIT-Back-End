@@ -39,6 +39,10 @@ const ProductSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  featured: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // PRE-SAVE HOOK → assign the next 4-digit product ID automatically

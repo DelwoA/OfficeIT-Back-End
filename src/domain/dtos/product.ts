@@ -12,6 +12,7 @@ export const createProductDTO = z.object({
   specs: z
     .record(z.string().min(1), z.string().min(1))
     .refine((specs) => Object.keys(specs).length > 0),
+  featured: z.boolean().optional(),
 });
 
 // Export CreateProductDTO TypeScript type inferred from the Zod schemas
@@ -29,6 +30,7 @@ export const updateProductDTO = z.object({
   specs: z
     .record(z.string().min(1), z.string().min(1))
     .refine((specs) => Object.keys(specs).length > 0),
+  featured: z.boolean().optional(),
 });
 
 // Export UpdateProductDTO TypeScript type inferred from the Zod schemas
