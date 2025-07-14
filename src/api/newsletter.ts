@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { z } from "zod";
-import { addSubscriberToNewsletter } from "../utils/newsletter";
+import { addSubscriberToNewsletter } from "../infrastructure/utils/newsletter";
 
 const newsletterRouter = express.Router();
 
