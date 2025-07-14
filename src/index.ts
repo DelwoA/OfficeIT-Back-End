@@ -4,11 +4,11 @@ import connectDB from "./infrastructure/db";
 import globalErrorHandlingMiddleware from "./api/middleware/global-error-handling-middleware";
 import corsMiddleware from "./api/middleware/cors";
 import { clerkMiddleware } from "@clerk/express";
-import cloudinary from "./infrastructure/cloudinary";
 
 import productsRouter from "./api/product";
 import categoriesRouter from "./api/category";
 import newsletterRouter from "./api/newsletter";
+import contactRouter from "./api/contact";
 
 const app = express();
 
@@ -28,6 +28,7 @@ connectDB();
 app.use("/api/products", productsRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/newsletter", newsletterRouter);
+app.use("/api/contact", contactRouter);
 
 // Register global error handling middleware
 app.use(globalErrorHandlingMiddleware);

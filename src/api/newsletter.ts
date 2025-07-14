@@ -1,19 +1,15 @@
 import express, { Request, Response } from "express";
 import { z } from "zod";
 import { addSubscriberToNewsletter } from "../infrastructure/utils/newsletter";
+import { newsletterDTO } from "../domain/dtos/newsletter";
 
 const newsletterRouter = express.Router();
-
-// Email validation schema
-const emailSchema = z.object({
-  email: z.string().email("Please provide a valid email address"),
-});
 
 // POST /api/newsletter - Subscribe to newsletter
 newsletterRouter.post("/", async (req: Request, res: Response) => {
   try {
     // Validate the email input
-    const { email } = emailSchema.parse(req.body);
+    const { email } = newsletterDTO.parse(req.body);
 
     // Add subscriber to Brevo list
     await addSubscriberToNewsletter(email);
