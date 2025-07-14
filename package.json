@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/express": "^1.7.5",
+    "@getbrevo/brevo": "^2.5.0",
     "cloudinary": "^2.7.0",
     "cors": "^2.8.5",
     "dotenv": "^17.1.0",

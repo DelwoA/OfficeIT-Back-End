@@ -8,6 +8,7 @@ import cloudinary from "./infrastructure/cloudinary";
 
 import productsRouter from "./api/product";
 import categoriesRouter from "./api/category";
+import newsletterRouter from "./api/newsletter";
 
 const app = express();
 
@@ -23,15 +24,10 @@ app.use(corsMiddleware);
 // Connect to MongoDB database
 connectDB();
 
-// TODO: optional health-check – comment out in prod
-cloudinary.api
-  .ping()
-  .then(() => console.log("Cloudinary connected..."))
-  .catch((err) => console.error("Cloudinary error:", err.message));
-
 // Register API routes
 app.use("/api/products", productsRouter);
 app.use("/api/categories", categoriesRouter);
+app.use("/api/newsletter", newsletterRouter);
 
 // Register global error handling middleware
 app.use(globalErrorHandlingMiddleware);
