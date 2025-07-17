@@ -3,7 +3,7 @@ import cors from "cors";
 const whitelist = new Set([
   "http://localhost:5173",
   "http://localhost:5174",
-  "https://office-it-front-end.vercel.app",
+  "https://office-it-front-end.vercel.app/",
   "https://officeit.lk",
 ]);
 
