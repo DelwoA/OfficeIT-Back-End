@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 // Load environment variables
 const GMAIL_SENDER_EMAIL = process.env.GMAIL_SENDER_EMAIL;
 const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
+const EMAIL_RECEIVER = process.env.EMAIL_RECEIVER;
 
 // Configure the transporter
 const transporter = nodemailer.createTransport({
@@ -43,7 +44,7 @@ This email was sent from the Office IT website contact form.
 
     await transporter.sendMail({
       from: GMAIL_SENDER_EMAIL,
-      to: contactData.email,
+      to: EMAIL_RECEIVER,
       subject: `New Office IT Inquiry: ${contactData.subject}`,
       text: emailText,
     });
