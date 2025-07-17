@@ -33,6 +33,11 @@ app.use("/api/contact", contactRouter);
 // Register global error handling middleware
 app.use(globalErrorHandlingMiddleware);
 
-// Define the port to run the server
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}...`));
+// Export the app for Vercel deployment
+export default app;
+
+// For local development
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 8000;
+  app.listen(PORT, () => console.log(`Server is running on port ${PORT}...`));
+}
