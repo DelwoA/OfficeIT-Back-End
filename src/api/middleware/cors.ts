@@ -5,8 +5,9 @@ const whitelist = new Set([
   "http://localhost:5174",
   "http://localhost:3000",
   "http://192.168.1.33:3000",
-  "https://office-it-front-end.vercel.app",
+  "https://office-client-seven.vercel.app",
   "https://officeit.lk",
+  "https://www.officeit.lk",
 ]);
 
 const corsOptions = {
