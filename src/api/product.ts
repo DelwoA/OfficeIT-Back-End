@@ -9,6 +9,8 @@ import {
   updateProduct,
   deleteProduct,
 } from "../application/product";
+import { isAuthenticated } from "./middleware/authentication-middleware";
+import { isAdmin } from "./middleware/authorization-middleware";
 
 // Extend Request interface to include file property
 interface MulterRequest extends Request {
@@ -65,11 +67,14 @@ productsRouter.post(
   }
 );
 
-productsRouter.route("/").get(getAllProducts).post(createProduct);
+productsRouter
+  .route("/")
+  .get(getAllProducts)
+  .post(isAuthenticated, isAdmin, createProduct);
 productsRouter
   .route("/:id")
   .get(getProductById)
-  .put(updateProduct)
-  .delete(deleteProduct);
+  .put(isAuthenticated, isAdmin, updateProduct)
+  .delete(isAuthenticated, isAdmin, deleteProduct);
 
 export default productsRouter;
